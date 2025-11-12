@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="HandheldFriendly" content="true">
+        <title>
+            Nhân Phát Đức Beauty &ndash; NPĐ Beauty
+        </title>
+
+        <!-- Thêm stylesheet riêng cho header -->
+        <link rel="stylesheet" href="/trangweb/css/styles.css">
+    </head>
+
+    <body>
+        <!-- Header: logo, tìm kiếm, đăng nhập, giỏ hàng -->
+      <header role="banner">
+          <div class="header-inner">
+              <a class="logo" href="/trangweb/index.html" aria-label="Trang chủ NPĐ Beauty">
+                  <img src="/trangweb/image/logo-my-pham-2.png" alt="NPĐ Beauty" />
+                  <span class="logo-text">Nhân Phát Đức Beauty</span>
+              </a>
+
+                <form class="search" role="search" action="/trangweb/search.html" method="get" aria-label="Tìm kiếm sản phẩm">
+                    <input id="site-search" name="q" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm" />
+                    <button type="submit" aria-label="Tìm">
+                        <!-- icon tìm kiếm đơn giản -->
+                        🔍
+                    </button>
+                </form>
+
+                <div class="header-actions" role="group" aria-label="Tác vụ người dùng">
+                    <a class="icon-btn" href="/trangweb/login.html" aria-label="Đăng nhập">
+                        <!-- icon người (svg) -->
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 12c2.209 0 4-1.791 4-4s-1.791-4-4-4-4 1.791-4 4 1.791 4 4 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 20c0-2.5 3.582-4 8-4s8 1.5 8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                    <a class="icon-btn" href="/trangweb/cart.html" aria-label="Giỏ hàng">
+                        <!-- icon giỏ hàng (svg) -->
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 6h15l-1.5 9h-12L6 6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="10" cy="20" r="1" fill="currentColor"/>
+                            <circle cx="18" cy="20" r="1" fill="currentColor"/>
+                        </svg>
+                        <span class="cart-count" aria-hidden="true">0</span >
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- MỤC DANH MỤC SẢN PHẨM -->
+        <nav class="categories" aria-label="Danh mục sản phẩm">
+            <div class="categories-inner">
+                <!-- wrapper để submenu chỉ hiện khi trỏ vào nút "Danh mục" -->
+                <div class="categories-toggle-wrap">
+                    <button class="categories-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+                        Danh Mục Sản Phẩm ▾
+                    </button>
+
+                    <ul class="toggle-submenu" role="menu" aria-label="Danh mục chính">
+                        <li role="none">
+                            <a role="menuitem" href="/trangweb/category/face.html">Mặt</a>
+                        </li>
+                        <li role="none">
+                            <a role="menuitem" href="/trangweb/category/eyes.html">Mắt</a>
+                        </li>
+                        <li role="none">
+                            <a role="menuitem" href="/trangweb/category/nose.html">Mũi</a>
+                        </li>
+                        <li role="none">
+                            <a role="menuitem" href="/trangweb/category/lips.html">Môi</a>
+                        </li>
+                        <li role="none">
+                            <a role="menuitem" href="/trangweb/category/cheek.html">Má</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="introduction">
+  <h2>Nhân Phát Đức Beauty</h2>
+  <div class="underline"></div>
+  <p>
+    <strong>The Đức Nhân Phát</strong> là thương hiệu mỹ phẩm đến từ Việt Nam với giá cả phải chăng nhưng chất lượng xứng tầm với những thương hiệu cao cấp khác. 
+    <strong>The Đức Nhân Phát</strong> áp dụng những công nghệ hiện đại trong ngành mỹ phẩm để tạo ra những sản phẩm an toàn và hiệu quả cao cho mọi làn da
+  </p>
+</section>
+    <h2 class="section-title"> SẢN PHẨM NỔI BẬT </h2>
+    <div class="underline"></div>
+    <!-- Danh sách sản phẩm -->
+    <div class="product-list">
+  <div class="product-item">
+    <a href="product.html">
+      <img src="/trangweb/image/link_anh_sanpham1.jpg" alt="Tinh chất trị mụn, se khít lỗ chân lông The Ordinary Niacinamide 10% + Zinc 1%" />
+    </a>
+    <p>Tinh chất trị mụn, se khít lỗ chân lông The Ordinary Niacinamide 10% + Zinc 1%</p>
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=micellar">
+      <img src="/trangweb/image/link_anh_sanpham10.jpg" alt="Nước Tẩy Trang Byphasse Dành Cho Mọi Loại Da Solution Micellaire" />
+    </a>
+    <p>Nước Tẩy Trang Byphasse Dành Cho Mọi Loại Da Solution Micellaire</p>
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=aha-bha">
+      <img src="/trangweb/image/link_anh_sanpham3.jpg" alt="Serum tẩy tế bào chết, cải thiện mụn The Ordinary AHA 30% BHA 2% Peeling Solution" />
+    </a>
+    <p>Serum tẩy tế bào chết, cải thiện mụn The Ordinary AHA 30% BHA 2% Peeling Solution</p>
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=lash-serum">
+      <img src="/trangweb/image/link_anh_sanpham14.jpg" alt="Serum dưỡng dài mi The Ordinary Multi-Peptide Lash and Brow" />
+    </a>
+    <p>Serum dưỡng dài mi The Ordinary Multi-Peptide Lash and Brow</p>
+  </div>
+  
+  <div class="product-item">
+    <a href="product.html?id=garnier-micellar">
+      <img src="/trangweb/image/link_anh_sanpham5.jpg" alt="Nước Tẩy Trang Làm Sạch Sâu Garnier 50ML" />
+    </a>
+    <p>Nước Tẩy Trang Làm Sạch Sâu Garnier 50ML</p>
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=biore">
+      <img src="/trangweb/image/link_anh_sanpham6.jpg" alt="[Gói 10 Miếng] Khăn Tẩy Trang Bioré Cleansing Cotton Rich Moisture" />
+    </a>
+    <p>[Gói 10 Miếng] Khăn Tẩy Trang Bioré Cleansing Cotton Rich Moisture</p>
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=derladie">
+      <img src="/trangweb/image/link_anh_sanpham7.jpg" alt="[Phiên Bản Nâng Cấp] Nước Tẩy Trang Derladie Làm Sạch Da, Dịu Nhẹ Cleansing Water Witch Hazel Micellar 500ml" />
+    </a>
+    <p>[Phiên Bản Nâng Cấp] Nước Tẩy Trang Derladie Làm Sạch Da, Dịu Nhẹ Cleansing Water Witch Hazel Micellar 500ml</p>
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=vaseline">
+      <img src="/trangweb/image/link_anh_sanpham8.jpg" alt="Sữa Dưỡng Thể Body Vaseline Dưỡng Sáng Da, Dưỡng Ẩm Toàn Thân Healthy Bright" />
+    </a>
+    <p>Sữa Dưỡng Thể Body Vaseline Dưỡng Sáng Da, Dưỡng Ẩm Toàn Thân Healthy Bright</p>
+
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=simple">
+      <img src="/trangweb/image/link_anh_sanpham9.jpg" alt="Sữa Rửa Mặt Simple Dịu Nhẹ, Dành Cho Da Nhạy Cảm Refreshing Facial Wash 150ml" />
+    </a>
+    <p>Sữa Rửa Mặt Simple Dịu Nhẹ, Dành Cho Da Nhạy Cảm Refreshing Facial Wash 150ml</p>
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=senka">
+      <img src="/trangweb/image/link_anh_sanpham11.jpg" alt="Sữa Rửa Mặt Senka Tạo Bọt Dành Cho Da Mụn Perfect Whip Acne Care 100g" />
+    </a>
+    <p>Sữa Rửa Mặt Senka Tạo Bọt Dành Cho Da Mụn Perfect Whip Acne Care 100g</p>
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=chinoshio">
+      <img src="/trangweb/image/link_anh_sanpham12.jpg" alt="Nước Hoa Hồng  Chiết Xuất Diếp Cá, Tía Tô Chinoshio Natural Skin Lotion 500ml" />
+    </a>
+    <p>Nước Hoa Hồng  Chiết Xuất Diếp Cá, Tía Tô Chinoshio Natural Skin Lotion 500ml</p>
+  </div>
+
+  <div class="product-item">
+    <a href="product.html?id=angels-liquid">
+      <img src="/trangweb/image/link_anh_sanpham13.jpg" alt="Kem Dưỡng Angel's Liquid Hỗ Trợ Sáng Da, Mờ Thâm Nám 7 Day Glutathione 700 V-Cream 50ml" />
+    </a>
+    <p>Kem Dưỡng Angel's Liquid Hỗ Trợ Sáng Da, Mờ Thâm Nám 7 Day Glutathione 700 V-Cream 50ml</p>
+  </div>
+
+<footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>LIÊN HỆ</h3>
+                <hr />
+                <p>Địa chỉ: 38 đường 6, Long Trường, Quận 9, Hồ Chí Minh</p>
+                <p>Email: NhanPhatDucBeauty.vn@gmail.com</p>
+                <p>Hotline: 0399.135.719</p>
+                <p>https://NhanPhatDucBeauty.com.vn/</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+                <hr />
+                <ul>
+                    <li>Giới thiệu</li>
+                    <li>Hướng dẫn mua hàng</li>
+                    <li>Chính sách đổi trả</li>
+                    <li>Chính sách bảo mật</li>
+                    <li>Điều khoản dịch vụ</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>FACEBOOK</h3>
+                <hr />
+                <div class="facebook-box">
+                    <img src="/trangweb/image/link_anh_facebook.png" alt="Nhân Phát Đức Beauty" />
+                    <p>Nhân Phát Đức Beauty<br/>37.194 lượt thích</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2025 © <strong>ordinary.com.vn</strong></p>
+        </div>
+    </footer>
+
+    </body>
+</html>
