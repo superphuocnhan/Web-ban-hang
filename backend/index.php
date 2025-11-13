@@ -1,5 +1,16 @@
+<<<<<<< HEAD
 <?php include 'connect.php'; ?>
 
+=======
+<?php
+// Bật hiển thị lỗi
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Kết nối CSDL
+require_once 'connect.php';
+?>
+>>>>>>> 83a4e0f (second commit)
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -25,7 +36,12 @@
     <?php
     $sql = "SELECT * FROM sanpham";
     $result = $conn->query($sql);
+<<<<<<< HEAD
     if ($result->num_rows > 0) {
+=======
+
+    if ($result && $result->num_rows > 0) {
+>>>>>>> 83a4e0f (second commit)
         while ($row = $result->fetch_assoc()) {
             echo "<tr>
                     <td>{$row['maSP']}</td>
