@@ -194,22 +194,32 @@
                 return;
             }
 
-            // Kiểm tra tài khoản mẫu
-            if (username === 'customer@example.com' && password === '123456') {
-                showNotification('Đăng nhập thành công!');
-                window.location.href = 'index.html';  // Chuyển sang /trangweb/login
-                return;
-            }
+            // Gửi dữ liệu đến backend/login.php
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('password', password);
 
-            // Kiểm tra tài khoản đã đăng ký (từ localStorage)
-            const storedUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
-            const user = storedUsers.find(u => u.email === username && u.password === password);
-            if (user) {
-                showNotification('Đăng nhập thành công!');
-                window.location.href = 'index.html';  // Chuyển sang /trangweb/login
-            } else {
-                errorMsg.textContent = 'Email hoặc mật khẩu sai!';
-            }
+            fetch('backend/login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.includes('Đăng nhập thành công!')) {
+                    showNotification('Đăng nhập thành công!');
+                    window.location.href = 'index.html';
+                } else if (data.includes('Sai mật khẩu!')) {
+                    errorMsg.textContent = 'Sai mật khẩu!';
+                } else if (data.includes('Tài khoản không tồn tại!')) {
+                    errorMsg.textContent = 'Tài khoản không tồn tại!';
+                } else {
+                    errorMsg.textContent = 'Lỗi không xác định!';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                errorMsg.textContent = 'Lỗi kết nối!';
+            });
         });
 
         // Xử lý form đăng ký
