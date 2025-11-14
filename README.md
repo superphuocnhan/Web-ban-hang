@@ -8,9 +8,9 @@ Giảng viên: __________________
 ----------------------------------------------------------------------
 I. THÔNG TIN THÀNH VIÊN
 ----------------------------------------------------------------------
-- MSSV – Họ Tên – Vai trò (Frontend / Backend / Database / Triển khai)
-- MSSV – Họ Tên – Vai trò
-- MSSV – Họ Tên – Vai trò
+- 2474802010274 – Trần Phước Nhân – Nhóm trưởng (database - triển khai)
+- 2474802010090 – Nguyễn Minh Đức – Thành viên (frontend)
+- 2474802010571 – Nguyễn Phan Vĩnh Phát – Thành viên (backend)
 
 ----------------------------------------------------------------------
 II. MÔ TẢ ĐỀ TÀI
