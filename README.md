@@ -15,7 +15,7 @@ I. THÔNG TIN THÀNH VIÊN
 ----------------------------------------------------------------------
 II. MÔ TẢ ĐỀ TÀI
 ----------------------------------------------------------------------
-Tên đề tài: _______________________________________________
+Tên đề tài: Quản lý bán đồ ăn nhanh
 
 Mô tả ngắn:
 Website mô phỏng hệ thống quản lý dữ liệu thực tế sử dụng  HTML5, CSS3, JavaScript, PHP và MySQL. Hỗ trợ chức năng đăng nhập, thêm/xóa/sửa/tìm kiếm dữ liệu và thống kê cơ bản.
