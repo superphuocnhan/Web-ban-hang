@@ -1,9 +1,9 @@
 README - ĐỒ ÁN LẬP TRÌNH ỨNG DỤNG WEB
 ====================================
 
-NHÓM: ____________
+NHÓM: 6
 HỌC PHẦN: Lập Trình Ứng Dụng Web
-Giảng viên: __________________
+Giảng viên: Trần Công Thanh
 
 ----------------------------------------------------------------------
 I. THÔNG TIN THÀNH VIÊN
@@ -25,12 +25,12 @@ III. CÁCH CÀI ĐẶT & CHẠY DỰ ÁN (LOCALHOST - XAMPP)
 ----------------------------------------------------------------------
 1. Cài đặt XAMPP
 2. Copy toàn bộ thư mục SourceCode vào:
-   htdocs/<ten_du_an>/
+   htdocs/Web-ban-hang/
 3. Khởi động Apache và MySQL
 4. Import Database:
    - Mở phpMyAdmin
-   - Tạo database mới: <ten_database>
-   - Import file: Database/database.sql
+   - Tạo database mới: qlbandoannhanh3
+   - Import file: qlbandoannhanh3
 5. Chạy dự án:
    http://localhost/<ten_du_an>
 
