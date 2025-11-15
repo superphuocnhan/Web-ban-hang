@@ -23,7 +23,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            pointer-events: none;
+            pointer-events: none; /* không chặn thao tác chuột */
             z-index: 1;
         }
 
@@ -35,7 +35,7 @@
             animation: snow 9s linear infinite;
         }
 
-        /* random vị trí / tốc độ */
+        /* random vị trí / tốc độ từng bông tuyết cho tự nhiên hơn */
         .snowflake:nth-child(1)  { left: 3%;  font-size: 16px; animation-duration: 11s; }
         .snowflake:nth-child(2)  { left: 8%;  font-size: 20px; animation-duration: 9s;  }
         .snowflake:nth-child(3)  { left: 13%; font-size: 14px; animation-duration: 10s; }
@@ -63,7 +63,7 @@
             100% { transform: translateY(110vh) translateX(40px); opacity: 0; }
         }
 
-        /* ===== LAYOUT ===== */
+        /* ===== LAYOUT THANH TRÊN (TOPBAR) ===== */
         .topbar {
             position: relative;
             z-index: 2;
@@ -82,7 +82,7 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* ===== BANNER NOEL (chữ) ===== */
+        /* ===== BANNER NOEL (chữ chúc mừng) ===== */
         .noel-banner {
             position: relative;
             z-index: 2;
@@ -103,7 +103,7 @@
             opacity: 0.9;
         }
 
-        /* ===== USER MENU ===== */
+        /* ===== USER MENU (avatar + tên + dropdown) ===== */
         .user-menu {
             position: relative;
             display: flex;
@@ -189,7 +189,7 @@
             box-shadow: 0 3px 8px rgba(0,0,0,0.25);
         }
 
-        /* ===== ACTION BAR ===== */
+        /* ===== THANH ACTION BAR (nút + search) ===== */
         .action-bar {
             position: relative;
             z-index: 2;
@@ -213,13 +213,13 @@
             box-shadow: 0 3px 8px rgba(0,0,0,0.25);
         }
 
-        .btn-add  { background: #e74c3c; }
-        .btn-stat { background: #b31217; }
+        .btn-add  { background: #e74c3c; }  /* nút Thêm sản phẩm */
+        .btn-stat { background: #b31217; }  /* nút Thống kê */
 
         .btn-add::before  { content: "🎁"; }
         .btn-stat::before { content: "📊"; }
 
-        /* SEARCH đẹp */
+        /* Ô tìm kiếm sản phẩm */
         .search-box {
             margin-left: 20px;
             display: flex;
@@ -257,7 +257,7 @@
             font-weight: bold;
         }
 
-        /* TABLE */
+        /* ===== BẢNG HIỂN THỊ SẢN PHẨM ===== */
         table {
             position: relative;
             z-index: 2;
@@ -280,7 +280,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* ===== BANNER ÔNG GIÀ NOEL CHẠY NGANG ===== */
+        /* ===== BANNER ÔNG GIÀ NOEL CHẠY NGANG DƯỚI CÙNG ===== */
         .santa-line {
             position: fixed;
             bottom: 18px;
@@ -295,12 +295,11 @@
             white-space: nowrap;
             font-size: 40px;
             display: inline-block;
-
             /* chạy PHẢI → TRÁI */
             animation: santaMove 18s linear infinite;
         }
 
-        /* 🔥 CHỈNH HƯỚNG CHẠY */
+        /* Animation cho dàn tuần lộc + ông già Noel chạy ngang */
         @keyframes santaMove {
             0%   { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -310,14 +309,14 @@
 
 <body>
 
-<!-- Tuyết -->
+<!-- Tuyết rơi -->
 <div class="snowflakes" aria-hidden="true">
     <div class="snowflake">❄</div><div class="snowflake">✻</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
     <div class="snowflake">❄</div><div class="snowflake">✻</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
     <div class="snowflake">❄</div><div class="snowflake">✻</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
 </div>
 
-<!-- Ông già Noel chạy ngang -->
+<!-- Ông già Noel chạy ngang dưới màn hình -->
 <div class="santa-line">
     <div class="santa-track">
         🦌🦌🛷🎅 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -329,6 +328,7 @@
 </div>
 
 <?php
+// Khởi tạo session để lấy thông tin người dùng đã đăng nhập
 session_start();
 ?>
 
@@ -336,14 +336,18 @@ session_start();
     <h1>🎄 Quản lý Sản phẩm</h1>
 
     <?php if (isset($_SESSION['username'])):
+        // Lấy username từ session
         $u = $_SESSION['username'];
+        // Lấy ký tự đầu làm avatar text
         $first = strtoupper($u[0]);
     ?>
+    <!-- Menu người dùng (avatar + tên + dropdown) -->
     <div class="user-menu" id="toggleUser">
         <div class="user-avatar"><?= $first ?></div>
         <span class="user-name"><?= htmlspecialchars($u) ?></span>
         <span class="user-caret">▼</span>
 
+        <!-- Dropdown thông tin user + nút logout -->
         <div class="dropdown-box" id="userDrop">
             <div class="dropdown-header">
                 <div class="user-avatar"><?= $first ?></div>
@@ -361,13 +365,13 @@ session_start();
     <?php endif; ?>
 </div>
 
-<!-- Banner Noel -->
+<!-- Banner Noel chúc mừng -->
 <div class="noel-banner">
     🎅 <b>Merry Christmas!</b>
     <span class="small">Chúc bạn bán được thật nhiều đơn mùa lễ hội 🎁</span>
 </div>
 
-<!-- Action bar -->
+<!-- Thanh action: Thêm / Thống kê / Tìm kiếm -->
 <div class="action-bar">
     <a href="add.html" class="btn-add">Thêm sản phẩm</a>
     <a href="backend/thongke.php" class="btn-stat">Thống kê</a>
@@ -379,7 +383,7 @@ session_start();
     </div>
 </div>
 
-<!-- Bảng -->
+<!-- Bảng dữ liệu sản phẩm -->
 <table>
     <thead>
         <tr>
@@ -392,29 +396,34 @@ session_start();
 </table>
 
 <script>
-    // Load data
+    // ===== LOAD DỮ LIỆU SẢN PHẨM TỪ BACKEND (AJAX FETCH) =====
     fetch('/Web-ban-hang/backend/index.php')
         .then(res => res.text())
         .then(html => document.getElementById("tbodySP").innerHTML = html);
 
+    // Hàm tìm kiếm theo tên sản phẩm trong bảng
     function searchTable() {
         let key = document.getElementById("searchInput").value.toLowerCase();
         document.querySelectorAll("#tbodySP tr").forEach(row => {
+            // Cột thứ 2 (index 1) là tên sản phẩm
             let name = row.cells[1]?.innerText.toLowerCase();
+            // Nếu không nhập hoặc tên chứa từ khóa → hiển thị, ngược lại ẩn đi
             row.style.display = (!key || name.includes(key)) ? "" : "none";
         });
     }
 
+    // ===== XỬ LÝ HIỆN / ẨN DROPDOWN USER =====
     const btn = document.getElementById("toggleUser");
     const drop = document.getElementById("userDrop");
 
+    // Click vào avatar → toggle dropdown
     btn?.addEventListener("click", e => {
-        e.stopPropagation();
+        e.stopPropagation(); // tránh click lan ra document
         drop.classList.toggle("show");
     });
 
+    // Click ra ngoài → đóng dropdown
     document.addEventListener("click", () => drop?.classList.remove("show"));
 </script>
-
 </body>
 </html>

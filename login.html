@@ -5,92 +5,266 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Đăng Nhập / Đăng Ký - Nhân Phát Đức Beauty</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        /* ===== RESET NHẸ ===== */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        /* Nền Noel + căn giữa card login/register */
+        body {
+            min-height: 100vh;
+            padding: 20px;
+            /* Nền đỏ–trắng Noel */
+            background: linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #ffecec 25%,
+                #ff9f9f 50%,
+                #ff4b4b 75%,
+                #b30000 100%
+            );
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            overflow-x: hidden;
+            color: #fff;
         }
+
+        /* ===== TUYẾT RƠI DÀY (TRANG TRÍ NOEL) ===== */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            pointer-events: none; /* Không chặn thao tác chuột */
+            z-index: 50;
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: #ffffff;
+            font-size: 18px;
+            opacity: 0.9;
+            animation-name: snow;
+            animation-duration: 9s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        /* Vị trí + delay khác nhau cho từng bông tuyết */
+        .snowflake:nth-child(1) { left: 5%;  font-size: 22px; animation-delay: 0s; }
+        .snowflake:nth-child(2) { left: 15%; font-size: 18px; animation-delay: 1.5s; }
+        .snowflake:nth-child(3) { left: 25%; font-size: 24px; animation-delay: 3s; }
+        .snowflake:nth-child(4) { left: 35%; font-size: 18px; animation-delay: 0.5s; }
+        .snowflake:nth-child(5) { left: 45%; font-size: 26px; animation-delay: 2.5s; }
+        .snowflake:nth-child(6) { left: 55%; font-size: 20px; animation-delay: 4s; }
+        .snowflake:nth-child(7) { left: 65%; font-size: 22px; animation-delay: 1s; }
+        .snowflake:nth-child(8) { left: 75%; font-size: 18px; animation-delay: 3.5s; }
+        .snowflake:nth-child(9) { left: 85%; font-size: 24px; animation-delay: 5s; }
+        .snowflake:nth-child(10){ left: 95%; font-size: 20px; animation-delay: 6s; }
+
+        /* Animation rơi xuống dưới màn hình và mờ dần */
+        @keyframes snow {
+            0%   { transform: translateY(0); opacity: 0.95; }
+            100% { transform: translateY(110vh); opacity: 0; }
+        }
+
+        /* ===== BANNER ÔNG GIÀ NOEL + TUẦN LỘC CHẠY NGANG ===== */
+        .santa-banner-track {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 60;
+        }
+
+        .santa-banner {
+            white-space: nowrap;
+            font-size: 26px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            animation: santa-run 12s linear 5; /* chạy 5 lần rồi dừng */
+        }
+
+        /* Animation chạy từ phải sang trái */
+        @keyframes santa-run {
+            0%   { transform: translateX(100%); }
+            100% { transform: translateX(-120%); }
+        }
+
+        /* ===== CARD LOGIN / REGISTER ===== */
         .container {
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background: rgba(15, 23, 42, 0.9);
+            padding: 26px 22px 24px;
+            border-radius: 16px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.55);
             width: 100%;
             max-width: 400px;
+            border: 1px solid rgba(148,163,184,0.7);
+            position: relative;
+            z-index: 20;
         }
+
+        /* Thanh nút chuyển giữa đăng nhập / đăng ký */
         .toggle-buttons {
             display: flex;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid rgba(148,163,184,0.8);
+            background: rgba(15, 23, 42, 0.9);
         }
+
         .toggle-btn {
             flex: 1;
             padding: 10px;
-            background-color: #ddd;
+            background-color: transparent;
             border: none;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
+            text-align: center;
+            color: #e5e7eb;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        /* Nút đang được chọn (tab active) */
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #facc15, #f97316);
+            color: #111827;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
             text-align: center;
         }
-        .toggle-btn.active {
-            background-color: #5a574c;
-            color: #fff;
+
+        /* Ẩn/hiện từng form theo tab */
+        .form-section {
+            display: none;
         }
+        .form-section.active {
+            display: block;
+        }
+
+        /* Ô input từng form-group */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 14px;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #555;
+            color: #e5e7eb;
+            font-size: 14px;
         }
+
         .form-group input {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 10px;
+            border: 1px solid rgba(148,163,184,0.85);
+            background: rgba(15,23,42,0.95);
+            color: #e5e7eb;
             box-sizing: border-box;
+            font-size: 14px;
+            outline: none;
         }
+
+        .form-group input:focus {
+            border-color: #facc15;
+            box-shadow: 0 0 0 1px rgba(250,204,21,0.5);
+        }
+
+        /* Nút submit cho cả đăng nhập và đăng ký */
         .btn {
             width: 100%;
             padding: 10px;
-            background-color: #5a574c;
-            color: #fff;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #f9fafb;
             border: none;
-            border-radius: 4px;
+            border-radius: 999px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 4px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s;
         }
+
         .btn:hover {
-            background-color: #4a4740;
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.7);
+            opacity: 0.97;
         }
+
+        /* Link phụ (nếu cần) */
         .links {
             text-align: center;
             margin-top: 15px;
         }
+
         .links a {
-            color: #5a574c;
+            color: #fde68a;
             text-decoration: none;
             font-size: 14px;
         }
+
         .links a:hover {
             text-decoration: underline;
         }
+
+        /* Hiển thị lỗi ở dưới form */
         .error {
-            color: red;
+            color: #fca5a5;
             font-size: 14px;
-            margin-top: 10px;
+            margin-top: 8px;
+            text-align: center;
         }
-        .form-section { display: none; }
-        .form-section.active { display: block; }
+
+        /* Responsive trên màn nhỏ */
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+            .container {
+                padding: 22px 18px 20px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Tuyết rơi Noel -->
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❄</div>
+        <div class="snowflake">✻</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">✼</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">✻</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">✼</div>
+        <div class="snowflake">❆</div>
+    </div>
+
+    <!-- Banner ông già Noel – tuần lộc chạy ngang trên đầu trang -->
+    <div class="santa-banner-track">
+        <div class="santa-banner">
+            🎅✨🦌🦌🦌🎁🎄  🎅✨🦌🦌🦌🎁🎄
+        </div>
+    </div>
+
+    <!-- CARD chứa form đăng nhập / đăng ký -->
     <div class="container">
+        <!-- Nút chuyển tab: Đăng Nhập / Đăng Ký -->
         <div class="toggle-buttons">
             <button class="toggle-btn active" id="login-toggle">Đăng Nhập</button>
             <button class="toggle-btn" id="register-toggle">Đăng Ký</button>
@@ -99,7 +273,7 @@
         <!-- Form Đăng Nhập -->
         <div class="form-section active" id="login-form-section">
             <h2>Đăng Nhập</h2>
-            <!-- GỬI TRỰC TIẾP TỚI backend/login.php -->
+            <!-- action gửi sang backend/login.php xử lý -->
             <form id="login-form" action="backend/login.php" method="POST">
                 <div class="form-group">
                     <label for="login-username">Email hoặc Tên đăng nhập:</label>
@@ -110,6 +284,7 @@
                     <input type="password" id="login-password" name="password" required>
                 </div>
                 <button type="submit" class="btn">Đăng Nhập</button>
+                <!-- chỗ hiển thị thông báo lỗi đăng nhập -->
                 <div id="login-error" class="error"></div>
             </form>
         </div>
@@ -117,7 +292,7 @@
         <!-- Form Đăng Ký -->
         <div class="form-section" id="register-form-section">
             <h2>Đăng Ký Tài Khoản</h2>
-            <!-- CÓ THỂ TẠO backend/register.php SAU -->
+            <!-- action gửi sang backend/register.php xử lý -->
             <form id="register-form" action="backend/register.php" method="POST">
                 <div class="form-group">
                     <label for="register-fullname">Họ và tên:</label>
@@ -136,18 +311,20 @@
                     <input type="password" id="register-confirm-password" name="confirm_password" required>
                 </div>
                 <button type="submit" class="btn">Đăng Ký</button>
+                <!-- chỗ hiển thị thông báo lỗi đăng ký -->
                 <div id="register-error" class="error"></div>
             </form>
         </div>
     </div>
 
     <script>
-        // Toggle giữa đăng nhập và đăng ký
+        // ===== XỬ LÝ CHUYỂN TAB GIỮA ĐĂNG NHẬP / ĐĂNG KÝ =====
         const loginToggle = document.getElementById('login-toggle');
         const registerToggle = document.getElementById('register-toggle');
         const loginSection = document.getElementById('login-form-section');
         const registerSection = document.getElementById('register-form-section');
 
+        // Khi click vào "Đăng Nhập"
         loginToggle.addEventListener('click', function() {
             loginToggle.classList.add('active');
             registerToggle.classList.remove('active');
@@ -155,6 +332,7 @@
             registerSection.classList.remove('active');
         });
 
+        // Khi click vào "Đăng Ký"
         registerToggle.addEventListener('click', function() {
             registerToggle.classList.add('active');
             loginToggle.classList.remove('active');
@@ -162,11 +340,12 @@
             loginSection.classList.remove('active');
         });
 
-        // Đọc lỗi từ URL (?error=...)
+        // ===== ĐỌC THÔNG BÁO LỖI TỪ URL (?login_error=... & register_error=...) =====
         const params = new URLSearchParams(window.location.search);
         const loginError = params.get('login_error');
         const registerError = params.get('register_error');
 
+        // Xử lý hiển thị lỗi đăng nhập
         if (loginError) {
             const msg = {
                 empty: 'Vui lòng nhập đầy đủ thông tin!',
@@ -174,12 +353,14 @@
                 nouser: 'Tài khoản không tồn tại!',
                 unknown: 'Lỗi không xác định!'
             }[loginError] || 'Đăng nhập thất bại!';
+
             document.getElementById('login-error').textContent = msg;
         }
 
+        // Xử lý hiển thị lỗi đăng ký (chuỗi lỗi được mã hóa trong URL)
         if (registerError) {
             document.getElementById('register-error').textContent = decodeURIComponent(registerError);
-            // tự chuyển sang tab đăng ký nếu có lỗi đăng ký
+            // Tự động chuyển sang tab Đăng Ký nếu có lỗi đăng ký
             registerToggle.click();
         }
     </script>

@@ -1,52 +1,65 @@
 <?php
+// Kết nối database
 include 'connect.php';
 
-// 1. Kiểm tra id có tồn tại & hợp lệ không
+// ------------------------------
+// 1. Kiểm tra ID truyền vào
+// ------------------------------
+// Nếu không có id hoặc id không phải là số → báo lỗi và dừng chương trình
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("❌ ID không hợp lệ hoặc không được truyền vào!");
 }
 
-$id = (int)$_GET['id']; // ép kiểu int cho chắc
+$id = (int)$_GET['id']; // Ép kiểu int để đảm bảo an toàn
 
-// 2. Lấy sản phẩm theo ID
+// ------------------------------
+// 2. Lấy thông tin sản phẩm theo ID
+// ------------------------------
 $sql = "SELECT * FROM sanpham WHERE maSP = $id";
 $result = $conn->query($sql);
 
-// Kiểm tra lỗi query
+// Nếu query lỗi → dừng và in lỗi
 if (!$result) {
     die("❌ Lỗi truy vấn: " . $conn->error);
 }
 
-// Không có sản phẩm
+// Không tìm thấy sản phẩm
 if ($result->num_rows === 0) {
     die("❌ Không tìm thấy sản phẩm có ID = $id");
 }
 
+// Lấy dữ liệu sản phẩm
 $row = $result->fetch_assoc();
 
-// 3. Nếu bấm nút Cập nhật
+// ------------------------------
+// 3. Khi người dùng nhấn nút "Cập nhật"
+// ------------------------------
 if (isset($_POST['update'])) {
+
+    // Lấy dữ liệu từ form gửi lên
     $tenSP   = $_POST['tenSP'] ?? '';
     $gia     = $_POST['gia'] ?? 0;
     $moTa    = $_POST['moTa'] ?? '';
     $hinhAnh = $_POST['hinhAnh'] ?? '';
     $soLuong = $_POST['soLuong'] ?? 0;
 
-    // Ép kiểu số cho các trường số
+    // Ép kiểu số cho những trường cần số
     $gia     = (int)$gia;
     $soLuong = (int)$soLuong;
 
-    // Lưu ý: đây là cách đơn giản, làm bài học OK
-    // Nếu làm thực tế nên dùng prepared statement để chống SQL Injection
+    // Câu lệnh UPDATE sản phẩm
+    // (Phiên bản đơn giản theo đúng bài học)
     $sqlUpdate = "
         UPDATE sanpham 
         SET tenSP='$tenSP', gia=$gia, moTa='$moTa', hinhAnh='$hinhAnh', soLuong=$soLuong 
         WHERE maSP=$id
     ";
 
+    // Thực thi câu lệnh UPDATE
     if ($conn->query($sqlUpdate) === TRUE) {
         echo "✅ Cập nhật thành công! Đang quay lại danh sách...";
-        // Dùng JS redirect thay vì header (vì đã echo ở trên)
+
+        // Chuyển trang sau 1 giây
         echo "<script>
                 setTimeout(function() {
                     window.location.href = '../index.html';
@@ -66,29 +79,89 @@ if (isset($_POST['update'])) {
   <link rel="stylesheet" href="../css/edit.css">
 </head>
 <body>
-  <h1>✏️ Sửa sản phẩm</h1>
 
-  <form method="post">
-    Tên sản phẩm: 
-    <input type="text" name="tenSP" value="<?php echo htmlspecialchars($row['tenSP']); ?>"><br><br>
+    <!-- Hiệu ứng tuyết rơi Noel -->
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❄</div>
+        <div class="snowflake">✻</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">✼</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">✻</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">✼</div>
+        <div class="snowflake">❆</div>
+    </div>
 
-    Giá: 
-    <input type="number" name="gia" value="<?php echo $row['gia']; ?>"><br><br>
+    <!-- Banner ông già Noel chạy ngang -->
+    <div class="santa-banner-track">
+        <div class="santa-banner">
+            🎅✨🦌🦌🦌🎁🎄  🎅✨🦌🦌🦌🎁🎄
+        </div>
+    </div>
 
-    Mô tả: 
-    <input type="text" name="moTa" value="<?php echo htmlspecialchars($row['moTa']); ?>"><br><br>
+    <div class="container">
+        <div class="edit-card">
 
-    Hình ảnh: 
-    <input type="text" name="hinhAnh" value="<?php echo htmlspecialchars($row['hinhAnh']); ?>"><br><br>
+            <!-- Header trang sửa sản phẩm -->
+            <div class="edit-header">
+                <div>
+                    <h1>✏️ Sửa sản phẩm Noel</h1>
+                    <p class="subtitle">Cập nhật lại món ăn cho kịp mùa Giáng Sinh 🎄</p>
+                </div>
 
-    Số lượng: 
-    <input type="number" name="soLuong" value="<?php echo $row['soLuong']; ?>"><br><br>
+                <!-- Nút quay lại -->
+                <a href="../index.html" class="btn-back">⬅ Quay lại danh sách</a>
+            </div>
 
-    <input type="submit" name="update" value="Cập nhật">
-  </form>
+            <!-- Form sửa sản phẩm -->
+            <form method="post" class="edit-form">
 
-  <p>
-    <a href="../index.html">⬅ Quay lại danh sách sản phẩm</a>
-  </p>
+                <div class="form-group">
+                    <label for="tenSP">Tên sản phẩm</label>
+                    <input type="text" id="tenSP" name="tenSP"
+                           value="<?php echo htmlspecialchars($row['tenSP']); ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gia">Giá</label>
+                    <input type="number" id="gia" name="gia"
+                           value="<?php echo $row['gia']; ?>" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="moTa">Mô tả</label>
+                    <input type="text" id="moTa" name="moTa"
+                           value="<?php echo htmlspecialchars($row['moTa']); ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="hinhAnh">Hình ảnh (URL / tên file)</label>
+                    <input type="text" id="hinhAnh" name="hinhAnh"
+                           value="<?php echo htmlspecialchars($row['hinhAnh']); ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="soLuong">Số lượng</label>
+                    <input type="number" id="soLuong" name="soLuong"
+                           value="<?php echo $row['soLuong']; ?>" min="0" required>
+                </div>
+
+                <!-- Nút cập nhật / hủy -->
+                <div class="form-actions">
+                    <input type="submit" name="update" value="🎁 Cập nhật sản phẩm" class="btn-submit">
+                    <a href="../index.html" class="btn-cancel">Hủy</a>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>✨ Merry Christmas & Happy New Year ✨</span>
+        </footer>
+    </div>
+
 </body>
 </html>
