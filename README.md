@@ -32,7 +32,7 @@ III. CÁCH CÀI ĐẶT & CHẠY DỰ ÁN (LOCALHOST - XAMPP)
    - Tạo database mới: <qlbandoannhanh3>
    - Import file: Database/qlbandoannhanh3.sql
 5. Chạy dự án:
-   http://localhost/<ten_du_an>
+   http://localhost:8080/Web-ban-hang/login.html
 
 ----------------------------------------------------------------------
 IV. TÀI KHOẢN ĐĂNG NHẬP
