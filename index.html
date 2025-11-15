@@ -17,16 +17,19 @@
             color: #2c3e50;
             margin-bottom: 20px;
         }
-        .btn-add {
+        .btn-add, .btn-stat {
             display: inline-block;
             padding: 10px 16px;
-            background: #27ae60;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
             font-weight: 600;
             margin-bottom: 15px;
+            margin-right: 10px;
         }
+        .btn-add { background: #27ae60; }
+        .btn-stat { background: #8e44ad; }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -66,7 +69,9 @@
 
     <h1>📦 Quản lý Sản phẩm</h1>
 
+    <!-- Nút thêm + thống kê -->
     <a href="add.html" class="btn-add">➕ Thêm sản phẩm</a>
+    <a href="backend/thongke.php" class="btn-stat">📊 Thống kê</a>
 
     <table>
         <thead>
@@ -87,7 +92,7 @@
 
     <script>
         // Gọi tới file PHP lấy dữ liệu
-        fetch('/trangweb/backend/index.php')
+        fetch('/Web-ban-hang/backend/index.php')
             .then(response => response.text())
             .then(html => {
                 const tbody = document.getElementById('tbodySP');
